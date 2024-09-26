@@ -4,7 +4,7 @@
 
 **macaan.ai** is an AI-powered appliance troubleshooting and repair ecosystem designed to make home equipment repair easy. It provides homeowners with all the assistance they need, all in one place. This project replicates one page from the admin app, where customer service agents resolve tickets submitted by homeowners.
 
-The application is deployed on Vercel and can be accessed at: [https://macaanai.vercel.app/working](https://macaanai.vercel.app/working).
+The application is deployed on Vercel and can be accessed at: [https://macaanai.vercel.app](https://macaanai.vercel.app).
 
 ## Project Structure
 
