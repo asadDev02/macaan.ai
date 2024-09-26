@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# macaan.ai
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**macaan.ai** is an AI-powered appliance troubleshooting and repair ecosystem designed to make home equipment repair easy. It provides homeowners with all the assistance they need, all in one place. This project replicates one page from the admin app, where customer service agents resolve tickets submitted by homeowners.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The application is deployed on Vercel and can be accessed at: [https://macaanai.vercel.app/working](https://macaanai.vercel.app/working).
+
+## Project Structure
+
+The project is organized as follows:
+
+```
+macaan.ai/
+├── app/                    # Contains the main application code (pages, components, etc.)
+├── public/                 # Static assets such as images, fonts, etc.
+├── .eslintrc.json          # ESLint configuration file
+├── .gitignore              # Ignored files for git version control
+├── next.config.mjs         # Next.js configuration
+├── package.json            # Project dependencies and scripts
+├── package-lock.json       # Dependency lock file
+├── postcss.config.mjs      # PostCSS configuration
+├── tailwind.config.ts      # Tailwind CSS configuration
+├── tsconfig.json           # TypeScript configuration
+└── README.md               # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To get started with this project, clone the repository and install the dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone <repository-url>
+cd macaan.ai
+yarn install
+```
 
-## Learn More
+## Running the Application
 
-To learn more about Next.js, take a look at the following resources:
+To run the application in development mode:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This will start the development server, and you can view the app by navigating to `http://localhost:3000`.
 
-## Deploy on Vercel
+For production build:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+yarn build
+yarn start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Validation
+
+Data validation in this project is handled using [Yup](https://github.com/jquense/yup) in combination with [React Hook Form's Yup resolver](https://react-hook-form.com/get-started#SchemaValidation). This setup allows for schema-based validation, providing a simple and efficient way to validate form inputs.
+
+To add validation logic, define a Yup schema and pass it to the form using `yupResolver`:
+
+```ts
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+	name: yup.string().required("Name is required"),
+	email: yup
+		.string()
+		.email("Invalid email format")
+		.required("Email is required"),
+});
+
+const {
+	register,
+	handleSubmit,
+	formState: { errors },
+} = useForm({
+	resolver: yupResolver(schema),
+});
+
+const onSubmit = (data) => {
+	console.log(data);
+};
+```
+
+This ensures that any form submissions meet the defined validation criteria before being processed.
+
+## Dependencies
+
+The project includes the following key dependencies:
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/)
+- [PostCSS](https://postcss.org/)
+
+## Linting and Formatting
+
+Linting and formatting are enforced via [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) to maintain code quality and consistency. You can run lint checks with:
+
+```bash
+yarn lint
+```
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
