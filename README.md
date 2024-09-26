@@ -30,7 +30,7 @@ macaan.ai/
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/asadDev02/macaan.ai
 cd macaan.ai
 yarn install
 ```
